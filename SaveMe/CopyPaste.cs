@@ -18,8 +18,8 @@ namespace CopyPaste
             // コピー元の存在チェック
             if (!src_info.Exists)
             {
-                MessageBoxResult result = MessageBox.Show("ディレクトリが見つかりません。","エラー",MessageBoxButton.OK, MessageBoxImage.Error);
-                if(result == MessageBoxResult.OK)
+                MessageBoxResult result = MessageBox.Show("ディレクトリが見つかりません。再試行しますか？","エラー",MessageBoxButton.YesNo, MessageBoxImage.Error);
+                if(result == MessageBoxResult.Yes)
                 {
                     CP(src_str, dst_str);
                 }
@@ -60,8 +60,8 @@ namespace CopyPaste
             }
             else
             {
-                MessageBoxResult result = MessageBox.Show("書き込みエラーです。", "エラー", MessageBoxButton.OK, MessageBoxImage.Error);
-                if (result == MessageBoxResult.OK)
+                MessageBoxResult result = MessageBox.Show("書き込みエラーです。再試行しますか？", "エラー", MessageBoxButton.YesNo, MessageBoxImage.Error);
+                if (result == MessageBoxResult.Yes)
                 {
                     CP(src_str, dst_str);
                 }
