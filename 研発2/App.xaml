@@ -1,7 +1,7 @@
-﻿<Application x:Class="研発2.App"
+﻿<Application x:Class="SaveMe.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:研発2"
+             xmlns:local="clr-namespace:SaveMe"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
          

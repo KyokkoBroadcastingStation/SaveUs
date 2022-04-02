@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace 研発2
+namespace SaveMe
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

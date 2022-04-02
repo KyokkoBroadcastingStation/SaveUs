@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Windows;
 
-namespace 研発2
+namespace SaveMe
 {
     internal static class BackUp
     {
