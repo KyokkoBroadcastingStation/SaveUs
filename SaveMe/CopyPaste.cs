@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Windows;
 
-namespace SaveMe
+namespace CopyPaste
 {
-    internal static class BackUp
+    internal static class CopyPaste
     {
         internal static void CP(string src_str, string dst_str)
         {
