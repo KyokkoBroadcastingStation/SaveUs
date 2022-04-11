@@ -30,7 +30,8 @@ namespace CopyPaste
             Directory.CreateDirectory(dst_str);
 
             // コピー元のファイルを全てコピー先のフォルダに上書きコピー
-            foreach (string file in Directory.EnumerateFiles(src_str, "*.wav", SearchOption.AllDirectories))
+            string[] extensions = { ".mp3", ".wma", ".mp4", ".wav" };
+            foreach (string file in Directory.EnumerateFiles(src_str, "*.*", SearchOption.AllDirectories).Where(s => extensions.Any(ext => ext == Path.GetExtension(s))))
             {
                 //コピー先サブフォルダのパス取得+フォルダ作成(保存先パス\(ファイル作成年)\(ファイル作成月)\(ファイル作成日))
                 DateTime dt = File.GetLastWriteTime(file);
