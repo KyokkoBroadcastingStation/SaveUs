@@ -8,7 +8,7 @@ using System.Windows;
 
 namespace CopyPaste
 {
-    internal static class CopyPaste
+    public static class CopyPaste
     {
         internal static void CP(string src_str, string dst_str)
         {
@@ -18,8 +18,8 @@ namespace CopyPaste
             // コピー元の存在チェック
             if (!src_info.Exists)
             {
-                MessageBoxResult result = MessageBox.Show("ディレクトリが見つかりません。再試行しますか？","エラー",MessageBoxButton.YesNo, MessageBoxImage.Error);
-                if(result == MessageBoxResult.Yes)
+                MessageBoxResult result = MessageBox.Show("バックアップ元として指定されたフォルダ及びファイルが見つかりません。再試行しますか？", "エラー", MessageBoxButton.YesNo, MessageBoxImage.Error);
+                if (result == MessageBoxResult.Yes)
                 {
                     CP(src_str, dst_str);
                 }
@@ -29,31 +29,29 @@ namespace CopyPaste
             // コピー先のフォルダ作成
             Directory.CreateDirectory(dst_str);
 
-            // コピー元のフォルダとファイル情報を取得
-            DirectoryInfo[] src_folders = src_info.GetDirectories();
-            FileInfo[] src_files = src_info.GetFiles();
-
             // コピー元のファイルを全てコピー先のフォルダに上書きコピー
-            foreach (FileInfo file in src_files)
+            foreach (string file in Directory.EnumerateFiles(src_str, "*.wav", SearchOption.AllDirectories))
             {
-                string path = Path.Combine(dst_str, file.Name);
-                file.CopyTo(path, true);
-            }
+                //コピー先サブフォルダのパス取得+フォルダ作成(保存先パス\(ファイル作成年)\(ファイル作成月)\(ファイル作成日))
+                DateTime dt = File.GetLastWriteTime(file);
+                string subfolder = Path.Combine(dst_str, dt.ToString("yyyy"), dt.ToString("MM"), dt.ToString("dd"));
+                Directory.CreateDirectory(subfolder);
 
-            // 再起呼び出しによりコピー元のフォルダを全てコピー先のフォルダにコピー
-            foreach (DirectoryInfo subfolder in src_folders)
-            {
-                string path = Path.Combine(dst_str, subfolder.Name);
-                CP(subfolder.FullName, path);
+                //コピー先パス生成((サブフォルダパス)\(コピーするファイル名))
+                FileInfo src_file = new FileInfo(file);
+                string dst_path = Path.Combine(subfolder,src_file.Name);
+
+                //コピー実行
+                File.Copy(file ,dst_path, true);
             }
 
             //コピー後の成功
-        /*    foreach()
-            {
+            /*    foreach()
+                {
 
-            }*/
+                }*/
 
-            if(dst_info.Exists)
+            if (dst_info.Exists)
             {
                 MessageBoxResult result2 = MessageBox.Show("バックアップが完了しました。", "完了", MessageBoxButton.OK, MessageBoxImage.Asterisk);
                 return;

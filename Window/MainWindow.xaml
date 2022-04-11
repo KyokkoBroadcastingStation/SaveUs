@@ -15,6 +15,8 @@
             <ColumnDefinition Width="47*"/>
             <ColumnDefinition Width="753*"/>
         </Grid.ColumnDefinitions>
-        <Border BorderBrush="Black" BorderThickness="1" Grid.Column="1" Grid.Row="1"/>
+        <TextBox x:Name="TB1" Grid.Column="1" HorizontalAlignment="Left" Margin="113,105,0,0" Grid.Row="1" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="240"/>
+        <TextBox x:Name="TB2" Grid.Column="1" HorizontalAlignment="Left" Margin="113,176,0,0" Grid.Row="1" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="240"/>
+        <Button x:Name="Bt1" Grid.Column="1" Content="Button" HorizontalAlignment="Left" Margin="506,176,0,0" Grid.Row="1" VerticalAlignment="Top" Click="Bt1_Click"/>
     </Grid>
 </Window>

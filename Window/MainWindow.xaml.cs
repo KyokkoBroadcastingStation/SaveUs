@@ -24,5 +24,10 @@ namespace SaveMe
         {
             InitializeComponent();
         }
+
+        private void Bt1_Click(object sender, RoutedEventArgs e)
+        {
+            CopyPaste.CopyPaste.CP(TB1.Text,TB2.Text);
+        }
     }
 }
