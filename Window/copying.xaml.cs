@@ -10,17 +10,16 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace SaveMe.Pages
+namespace SaveMe.Window
 {
     /// <summary>
-    /// Page1.xaml の相互作用ロジック
+    /// copying.xaml の相互作用ロジック
     /// </summary>
-    public partial class Page1 : Page
+    public partial class copying
     {
-        public Page1()
+        public copying()
         {
             InitializeComponent();
         }

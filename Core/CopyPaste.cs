@@ -26,11 +26,15 @@ namespace CopyPaste
                 return;
             }
 
+            SaveMe.Window.copying copying = new SaveMe.Window.copying();
+            copying.Show();
+
             // コピー先のフォルダ作成
             Directory.CreateDirectory(dst_str);
 
             // コピー元のファイルを全てコピー先のフォルダに上書きコピー
-            string[] extensions = { ".mp3", ".wma", ".mp4", ".wav" };
+            string[] extensions = { "." + "mp3", "wma", "mp4" ,"MP4" ,"wav" };
+
             foreach (string file in Directory.EnumerateFiles(src_str, "*.*", SearchOption.AllDirectories).Where(s => extensions.Any(ext => ext == Path.GetExtension(s))))
             {
                 //コピー先サブフォルダのパス取得+フォルダ作成(保存先パス\(ファイル作成年)\(ファイル作成月)\(ファイル作成日))
@@ -41,6 +45,10 @@ namespace CopyPaste
                 //コピー先パス生成((サブフォルダパス)\(コピーするファイル名))
                 FileInfo src_file = new FileInfo(file);
                 string dst_path = Path.Combine(subfolder,src_file.Name);
+
+                var mainWindow = new SaveMe.MainWindow();
+                mainWindow.L1.Content = file + " , " + dst_path;
+                mainWindow.InvalidateVisual();
 
                 //コピー実行
                 File.Copy(file ,dst_path, true);
