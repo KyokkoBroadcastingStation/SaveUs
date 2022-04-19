@@ -10,10 +10,12 @@ namespace CopyPaste
 {
     public static class CopyPaste
     {
-        internal static void CP(string src_str, string dst_str)
+        async internal static void CP(string src_str, string dst_str)
         {
             DirectoryInfo src_info = new DirectoryInfo(src_str);
             DirectoryInfo dst_info = new DirectoryInfo(dst_str);
+
+            string[] extensions = { ".mp3", ".wma", ".mp4" ,".MP4" ,".wav" };
 
             // コピー元の存在チェック
             if (!src_info.Exists)
@@ -26,15 +28,25 @@ namespace CopyPaste
                 return;
             }
 
+            //表示関係
+            int length = 0;
+            int did = 0;
+            double persent = 0;
+            foreach (string file in Directory.EnumerateFiles(src_str, "*.*", SearchOption.AllDirectories).Where(s => extensions.Any(ext => ext == Path.GetExtension(s))))
+            {
+                length++;
+            }
             SaveMe.Window.copying cping = new SaveMe.Window.copying();
+            cping.PB2.Maximum = length;
+            cping.PB2.Minimum = 0;
+
             cping.Show();
+
 
             // コピー先のフォルダ作成
             Directory.CreateDirectory(dst_str);
 
             // コピー元のファイルを全てコピー先のフォルダに上書きコピー
-            string[] extensions = { "." + "mp3", "wma", "mp4" ,"MP4" ,"wav" };
-
             foreach (string file in Directory.EnumerateFiles(src_str, "*.*", SearchOption.AllDirectories).Where(s => extensions.Any(ext => ext == Path.GetExtension(s))))
             {
                 //コピー先サブフォルダのパス取得+フォルダ作成(保存先パス\(ファイル作成年)\(ファイル作成月)\(ファイル作成日))
@@ -46,12 +58,17 @@ namespace CopyPaste
                 FileInfo src_file = new FileInfo(file);
                 string dst_path = Path.Combine(subfolder,src_file.Name);
 
-                var mainWindow = new SaveMe.MainWindow();
-                mainWindow.L1.Content = file + " , " + dst_path;
-                mainWindow.InvalidateVisual();
+
+                cping.L1.Content = file;
+                
 
                 //コピー実行
-                File.Copy(file ,dst_path, true);
+                await Task.Run(() =>  File.Copy(file ,dst_path, true));
+ 
+                did++;
+                persent = Math.Round((double)(did / length),2) * 100;
+                cping.L2.Content = persent + "%";
+                cping.PB2.Value++;
             }
 
             //コピー後の成功
