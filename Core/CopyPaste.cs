@@ -26,8 +26,8 @@ namespace CopyPaste
                 return;
             }
 
-            SaveMe.Window.copying copying = new SaveMe.Window.copying();
-            copying.Show();
+            SaveMe.Window.copying cping = new SaveMe.Window.copying();
+            cping.Show();
 
             // コピー先のフォルダ作成
             Directory.CreateDirectory(dst_str);
