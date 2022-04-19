@@ -5,14 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SaveMe.Window"
         mc:Ignorable="d"
-        Title="copying" Height="250" Width="400">
-    <Grid>
-        <ProgressBar x:Name="PB1" HorizontalAlignment="Center" Height="10" Margin="0,82,0,0" VerticalAlignment="Top" Width="300"/>
-        <ProgressBar x:Name="PB2" HorizontalAlignment="Center" Height="10" Margin="0,126,0,0" VerticalAlignment="Top" Width="300"/>
-        <Label x:Name="L1" Content="L1" HorizontalAlignment="Left" Margin="50,61,0,0" VerticalAlignment="Top" Width="208" FontSize="9"/>
-        <Label x:Name="L2" Content="L2" HorizontalAlignment="Left" Margin="50,0,0,0" VerticalAlignment="Center" Width="208" FontSize="9"/>
-        <Label x:Name="L3" Content="perL3" HorizontalAlignment="Left" Margin="317,61,0,0" VerticalAlignment="Top" FontSize="9"/>
-        <Label x:Name="L4" Content="perL4" HorizontalAlignment="Left" Margin="317,0,0,0" VerticalAlignment="Center" FontSize="9"/>
+        Title="copying" Height="250" Width="530">
+    <Grid Margin="0,0,0,0">
+        <ProgressBar x:Name="PB1" HorizontalAlignment="Center" Height="15" Margin="0,132,0,0" VerticalAlignment="Top" Width="400"/>
+        <ProgressBar x:Name="PB2" HorizontalAlignment="Center" Height="15" Margin="0,73,0,0" VerticalAlignment="Top" Width="400"/>
+        <Label x:Name="L1" Content="L1" HorizontalAlignment="Left" Margin="65,47,0,0" VerticalAlignment="Top" Width="208"/>
+        <Label x:Name="L2" Content="L2" HorizontalAlignment="Left" Margin="65,106,0,0" VerticalAlignment="Top" Width="208"/>
+        <Label x:Name="L3" Content="perL3" HorizontalAlignment="Left" Margin="425,47,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="L4" Content="perL4" HorizontalAlignment="Left" Margin="425,106,0,0" VerticalAlignment="Top"/>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="425,176,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>
