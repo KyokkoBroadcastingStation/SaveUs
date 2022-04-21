@@ -9,7 +9,7 @@
     <Grid Margin="0,0,0,0">
         <ProgressBar x:Name="PB2" HorizontalAlignment="Center" Height="20" Margin="0,88,0,0" VerticalAlignment="Top" Width="400"/>
         <Label x:Name="L1" Content="L1" HorizontalAlignment="Left" Margin="65,62,0,0" VerticalAlignment="Top" Width="308"/>
-        <Label x:Name="L2" Content="L2" HorizontalAlignment="Left" Margin="425,62,0,0" VerticalAlignment="Top" Width="40"/>
+        <Label x:Name="L2" Content="0%" HorizontalAlignment="Left" Margin="425,62,0,0" VerticalAlignment="Top" Width="40"/>
         <Button Content="Button" HorizontalAlignment="Left" Margin="425,131,0,0" VerticalAlignment="Top"/>
         <Label x:Name="L3" Content="ファイルをバックアップ中..." HorizontalAlignment="Left" Margin="31,21,0,0" VerticalAlignment="Top" Height="36" Width="234" FontSize="20"/>
 

@@ -30,7 +30,7 @@ namespace CopyPaste
 
             //表示関係
             int length = 0;
-            int did = 0;
+            double did = 0;
             double persent = 0;
             foreach (string file in Directory.EnumerateFiles(src_str, "*.*", SearchOption.AllDirectories).Where(s => extensions.Any(ext => ext == Path.GetExtension(s))))
             {
@@ -80,6 +80,10 @@ namespace CopyPaste
             if (dst_info.Exists)
             {
                 MessageBoxResult result2 = MessageBox.Show("バックアップが完了しました。", "完了", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                if(result2 == MessageBoxResult.OK)
+                {
+                    cping.Hide();
+                }
                 return;
             }
             else
