@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using System.Windows;
+using System.Diagnostics;
 
 namespace CopyPaste
 {
@@ -30,8 +31,7 @@ namespace CopyPaste
 
             //表示関係
             int length = 0;
-            double did = 0;
-            double persent = 0;
+            int did = 0;
             foreach (string file in Directory.EnumerateFiles(src_str, "*.*", SearchOption.AllDirectories).Where(s => extensions.Any(ext => ext == Path.GetExtension(s))))
             {
                 length++;
@@ -56,18 +56,17 @@ namespace CopyPaste
 
                 //コピー先パス生成((サブフォルダパス)\(コピーするファイル名))
                 FileInfo src_file = new FileInfo(file);
-                string dst_path = Path.Combine(subfolder,src_file.Name);
+                string dst_path = Path.Combine(subfolder, src_file.Name);
 
-
-                cping.L1.Content = file;
-                
+                FileInfo fileinfo = new FileInfo(file);
+                FileInfo dst_fileinfo = new FileInfo(dst_path);
+                cping.L1.Content = fileinfo.Name;
+                cping.L2.Content = did + "/" + length;
 
                 //コピー実行
-                await Task.Run(() =>  File.Copy(file ,dst_path, true));
- 
+                await Task.Run(() => File.Copy(file, dst_path, true));
                 did++;
-                persent = Math.Round((double)(did / length),2) * 100;
-                cping.L2.Content = persent + "%";
+                cping.L2.Content = did + "/" + length;
                 cping.PB2.Value++;
             }
 
@@ -96,5 +95,20 @@ namespace CopyPaste
                 return;
             }
         }
+
+
+        /*static void CpShow(string befpass , string aftpass, double size ,int did , int length)
+        {
+            SaveMe.Window.copying cping = new SaveMe.Window.copying();
+            FileInfo fileinfo = new FileInfo(befpass);
+            cping.L1.Content = fileinfo.Name;
+            cping.L2.Content = did + "/" + length;
+            cping.PB2.Value++;
+
+            double per = Math.Round(fileinfo.Length / size)*100;
+            cping.PB1.Value = per;
+            cping.L4.Content = per + "%";
+
+        }*/
     }
 }

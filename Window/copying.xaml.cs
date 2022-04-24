@@ -19,9 +19,15 @@ namespace SaveMe.Window
     /// </summary>
     public partial class copying
     {
+
         public copying()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
