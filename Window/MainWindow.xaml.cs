@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Diagnostics;
+
 
 namespace SaveMe
 {
@@ -20,14 +22,31 @@ namespace SaveMe
     /// </summary>
     public partial class MainWindow
     {
+        public string tb1;
+        public string tb2;
         public MainWindow()
         {
             InitializeComponent();
         }
-
+        
         private void Bt1_Click(object sender, RoutedEventArgs e)
         {
-            CopyPaste.CopyPaste.CP(TB1.Text,TB2.Text);
+            Debug.WriteLine(tb1 + " → " + tb2);
+
+            var window = new SaveMe.Window.copying();
+
+            window.ShowDialog();
+            //CopyPaste.CopyPaste.CP(TB1.Text,TB2.Text);
+        }
+
+        private void TB1_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            tb1 = TB1.Text;
+        }
+
+        private void TB2_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            tb2 = TB2.Text;
         }
     }
 }
