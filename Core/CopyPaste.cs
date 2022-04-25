@@ -36,7 +36,7 @@ namespace CopyPaste
             {
                 length++;
             }
-            SaveMe.Window.copying cping = new SaveMe.Window.copying();
+            SaveMe.Window.copying cping = new SaveMe.Window.copying("a","a");
             cping.PB2.Maximum = length;
             cping.PB2.Minimum = 0;
 

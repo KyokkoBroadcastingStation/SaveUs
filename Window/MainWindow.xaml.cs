@@ -22,8 +22,8 @@ namespace SaveMe
     /// </summary>
     public partial class MainWindow
     {
-        public string tb1;
-        public string tb2;
+        //public string tb1;
+        //public string tb2;
         public MainWindow()
         {
             InitializeComponent();
@@ -31,22 +31,10 @@ namespace SaveMe
         
         private void Bt1_Click(object sender, RoutedEventArgs e)
         {
-            Debug.WriteLine(tb1 + " → " + tb2);
-
-            var window = new SaveMe.Window.copying();
-
-            window.ShowDialog();
+            var window = new SaveMe.Window.copying(TB1.Text,TB2.Text);
+            window.Show();
+            //window.ShowDialog();
             //CopyPaste.CopyPaste.CP(TB1.Text,TB2.Text);
-        }
-
-        private void TB1_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            tb1 = TB1.Text;
-        }
-
-        private void TB2_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            tb2 = TB2.Text;
         }
     }
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.IO;
 using System.Threading.Tasks;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -20,25 +21,44 @@ namespace SaveMe.Window
     /// </summary>
     public partial class copying
     {
-        public copying()
+        string tb1, tb2;
+        bool close;
+        System.Threading.Timer timer;
+        public copying(string a, string b)
         {
-            var window = new MainWindow();
-            //CP(window.tb2,window.tb2);
-            CP();
             InitializeComponent();
-
+            tb1 = a;
+            tb2 = b;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            L3.Content = "終了処理中";
+            close = true;
         }
 
-        private async void CP()
+        async private void Timer (object sender, RoutedEventArgs e)
+        {
+            var timer = new System.Timers.Timer();
+            timer.Interval = 500;
+            
+        }
+
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             var window = new MainWindow();
-            string src_str = window.tb1;
-            string dst_str = window.tb2;
+            //CP(window.tb2,window.tb2);
+            close = false;
+            this.Show();
+            timer = new System.threadings.Timer(500);
+            timer. += (s, ev) => { SliderValue++; };
+            timer.Start();
+            CP(tb1,tb2);
+        }
+
+        private async void CP(string src_str, string dst_str)
+        {
             DirectoryInfo src_info = new DirectoryInfo(src_str);
             DirectoryInfo dst_info = new DirectoryInfo(dst_str);
 
@@ -47,14 +67,14 @@ namespace SaveMe.Window
             // コピー元の存在チェック
             if (!src_info.Exists)
             {
-                MessageBoxResult result = MessageBox.Show("バックアップ元として指定されたフォルダ及びファイルが見つかりません。再試行しますか？\nパス："+window.tb1+" → "+ window.tb2, "エラー", MessageBoxButton.YesNo, MessageBoxImage.Error);
+                MessageBoxResult result = MessageBox.Show("バックアップ元として指定されたフォルダ及びファイルが見つかりません。再試行しますか？\nパス："+tb1+" → "+ tb2, "エラー", MessageBoxButton.YesNo, MessageBoxImage.Error);
                 if (result == MessageBoxResult.Yes)
                 {
-                    CP(/*src_str, dst_str*/);
+                    CP(src_str, dst_str);
                 }
                 else
                 {
-                    this.Close();
+                    this.Hide();
                 }
                 return;
             }
@@ -66,9 +86,9 @@ namespace SaveMe.Window
             {
                 length++;
             }
-            SaveMe.Window.copying cping = new SaveMe.Window.copying();
-            cping.PB2.Maximum = length;
-            cping.PB2.Minimum = 0;
+
+            PB2.Maximum = length;
+            PB2.Minimum = 0;
 
             // コピー先のフォルダ作成
             Directory.CreateDirectory(dst_str);
@@ -87,14 +107,14 @@ namespace SaveMe.Window
 
                 FileInfo fileinfo = new FileInfo(file);
                 FileInfo dst_fileinfo = new FileInfo(dst_path);
-                cping.L1.Content = fileinfo.Name;
-                cping.L2.Content = did + "/" + length;
+                L1.Content = fileinfo.Name;
+                L2.Content = did + "/" + length;
 
                 //コピー実行
                 await Task.Run(() => File.Copy(file, dst_path, true));
                 did++;
-                cping.L2.Content = did + "/" + length;
-                cping.PB2.Value++;
+                L2.Content = did + "/" + length;
+                PB2.Value++;
             }
 
             //コピー後の成功
@@ -108,7 +128,7 @@ namespace SaveMe.Window
                 MessageBoxResult result2 = MessageBox.Show("バックアップが完了しました。", "完了", MessageBoxButton.OK, MessageBoxImage.Asterisk);
                 if (result2 == MessageBoxResult.OK)
                 {
-                    cping.Hide();
+                    Hide();
                 }
                 return;
             }
@@ -117,11 +137,11 @@ namespace SaveMe.Window
                 MessageBoxResult result = MessageBox.Show("書き込みエラーです。再試行しますか？", "エラー", MessageBoxButton.YesNo, MessageBoxImage.Error);
                 if (result == MessageBoxResult.Yes)
                 {
-                    CP(/*src_str, dst_str*/);
+                    CP(src_str, dst_str);
                 }
                 else
                 {
-                    this.Close();
+                    Hide();
                 }
                 return;
             }
