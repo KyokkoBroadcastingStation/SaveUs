@@ -36,5 +36,10 @@ namespace SaveMe
             //window.ShowDialog();
             //CopyPaste.CopyPaste.CP(TB1.Text,TB2.Text);
         }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
     }
 }

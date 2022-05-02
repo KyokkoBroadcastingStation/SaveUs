@@ -23,7 +23,6 @@ namespace SaveMe.Window
     {
         string tb1, tb2;
         bool close;
-        System.Threading.Timer timer;
         public copying(string a, string b)
         {
             InitializeComponent();
@@ -37,25 +36,20 @@ namespace SaveMe.Window
             close = true;
         }
 
-        async private void Timer (object sender, RoutedEventArgs e)
-        {
-            var timer = new System.Timers.Timer();
-            timer.Interval = 500;
-            
-        }
-
-
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             var window = new MainWindow();
             //CP(window.tb2,window.tb2);
             close = false;
             this.Show();
-            timer = new System.threadings.Timer(500);
-            timer. += (s, ev) => { SliderValue++; };
-            timer.Start();
             CP(tb1,tb2);
         }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
 
         private async void CP(string src_str, string dst_str)
         {
@@ -111,10 +105,18 @@ namespace SaveMe.Window
                 L2.Content = did + "/" + length;
 
                 //コピー実行
-                await Task.Run(() => File.Copy(file, dst_path, true));
+                await Task.Run(() => { 
+                    File.Copy(file, dst_path, true);
+                });
                 did++;
                 L2.Content = did + "/" + length;
                 PB2.Value++;
+
+                if (close == true)
+                    {
+                        Close();
+                        return;
+                    }
             }
 
             //コピー後の成功

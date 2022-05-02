@@ -5,12 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SaveMe.Window"
         mc:Ignorable="d"
-        Title="copying" Height="200" Width="530" Loaded="Window_Loaded">
+        Title="copying" Height="200" Width="530" Loaded="Window_Loaded" Closing="Window_Closing">
     <Grid Margin="0,0,0,0">
         <ProgressBar x:Name="PB2" HorizontalAlignment="Center" Height="20" Margin="0,93,0,0" VerticalAlignment="Top" Width="400"/>
-        <Label x:Name="L1" Content="L1" HorizontalAlignment="Left" Margin="65,67,0,0" VerticalAlignment="Top" Width="308"/>
-        <Label x:Name="L2" Content="0%" HorizontalAlignment="Left" Margin="425,67,0,0" VerticalAlignment="Top" Width="40"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="425,134,0,0" VerticalAlignment="Top" Click="Button_Click"/>
+        <Label x:Name="L1" Content="L1" HorizontalAlignment="Left" Margin="65,67,0,0" VerticalAlignment="Top" Width="302"/>
+        <Label x:Name="L2" Content="0/0" HorizontalAlignment="Left" Margin="416,67,0,0" VerticalAlignment="Top" Width="58"/>
+        <Button Content="キャンセル" HorizontalAlignment="Left" Margin="404,133,0,0" VerticalAlignment="Top" Click="Button_Click"/>
         <Label x:Name="L3" Content="ファイルをバックアップ中" HorizontalAlignment="Left" Margin="31,21,0,0" VerticalAlignment="Top" Height="36" Width="234" FontSize="20"/>
 
     </Grid>
