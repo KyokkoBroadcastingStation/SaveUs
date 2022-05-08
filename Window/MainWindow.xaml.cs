@@ -31,7 +31,9 @@ namespace SaveMe
         public MainWindow()
         {
             InitializeComponent();
-            
+
+            var bgs = new Window.BackgroundSrc();
+            bgs.Show();
         }
         
         private void Bt1_Click(object sender, RoutedEventArgs e)

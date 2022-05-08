@@ -20,7 +20,12 @@ namespace SaveMe.Window
 
         private void BackgroundSrc_Load(object sender, EventArgs e)
         {
-            MessageBox.Show("どうも、Hydeです。");
+            var notifyIcon = new System.Windows.Forms.NotifyIcon
+            {
+                Visible = true,
+                Icon = Properties.Resources.trayicon,
+                Text = "タスクトレイ常駐アプリのテストです"
+            };
         }
         private const int WM_DEVICECHANGE = 0x219;              // デバイスまたはコンピューターのハードウェア構成への変更
         private const int DBT_DEVICEARRIVAL = 0x8000;           // USBの挿入
@@ -41,7 +46,7 @@ namespace SaveMe.Window
         {
             string drives = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-            int pos = (dnum / 2) - 1;
+            int pos = ((int)Math.Sqrt(dnum / 2) - 1);
 
             string letter = drives.Substring(pos, 1) + ":";
 
@@ -65,8 +70,7 @@ namespace SaveMe.Window
                         string dLetter = GetDriveLetter(vol.dbcv_unitmask);
 
                         //処理
-                        MessageBox.Show("a");
-
+                        
                     }
                 }
                 else if (m.WParam.ToInt64() == DBT_DEVICEREMOVECOMPLETE)
@@ -76,6 +80,11 @@ namespace SaveMe.Window
             }
 
             base.WndProc(ref m);
+        }
+
+        private void BackgroundSrc_Activated(object sender, EventArgs e)
+        {
+            this.Hide();
         }
     }
 }
