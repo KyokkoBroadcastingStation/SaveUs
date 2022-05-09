@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -46,7 +47,7 @@ namespace SaveMe.Window
         {
             string drives = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-            int pos = ((int)Math.Sqrt(dnum / 2) - 1);
+            int pos = ((int)Math.Pow(2,2) - 1);//指数
 
             string letter = drives.Substring(pos, 1) + ":";
 
@@ -70,7 +71,21 @@ namespace SaveMe.Window
                         string dLetter = GetDriveLetter(vol.dbcv_unitmask);
 
                         //処理
+                        string path = Path.Combine(dLetter + "set.ini");
+                        if(File.Exists(path) == true)
+                        {
+                            DialogResult result = MessageBox.Show("登録されたSDカードが検出されました。バックアップしますか？", "SaveMe", MessageBoxButtons.YesNo);
+                            
+                            if(result == DialogResult.Yes)
+                            {
+                                string src_path = Path.Combine(dLetter);
+                                var window = new SaveMe.Window.copying(src_path, "C:\\a");
+                                window.Show();
+                            }
+                            //FileStream fs = File.Create(path);
+                        }
                         
+
                     }
                 }
                 else if (m.WParam.ToInt64() == DBT_DEVICEREMOVECOMPLETE)
