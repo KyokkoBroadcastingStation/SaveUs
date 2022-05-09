@@ -15,8 +15,7 @@ using System.Windows.Media;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Forms;
-using System.Runtime.InteropServices;
-using System.Diagnostics;
+using System.IO;
 
 
 namespace SaveMe
@@ -34,14 +33,11 @@ namespace SaveMe
 
             var bgs = new Window.BackgroundSrc();
             bgs.Show();
-        }
-        
-        private void Bt1_Click(object sender, RoutedEventArgs e)
-        {
-            var window = new SaveMe.Window.copying(TB1.Text,TB2.Text);
-            window.Show();
-            //window.ShowDialog();
-            //CopyPaste.CopyPaste.CP(TB1.Text,TB2.Text);
+
+            if (File.Exists("./Setting.xml") == false)
+            {
+
+            }
         }
 
         private void Window_Closed(object sender, EventArgs e)
@@ -55,6 +51,12 @@ namespace SaveMe
             System.Windows.Forms.Integration.WindowsFormsHost host =
                 new System.Windows.Forms.Integration.WindowsFormsHost();
 
+        }
+
+        private void Setting_Click(object sender, RoutedEventArgs e)
+        {
+            Uri uri = new Uri("/Pages/Setting.xaml", UriKind.Relative);
+            contentFrame.Source = uri;
         }
     }
 }

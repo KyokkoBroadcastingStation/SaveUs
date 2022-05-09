@@ -9,6 +9,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using SaveMe.Properties;
 
 namespace SaveMe.Window
 {
@@ -24,7 +25,7 @@ namespace SaveMe.Window
             var notifyIcon = new System.Windows.Forms.NotifyIcon
             {
                 Visible = true,
-                Icon = Properties.Resources.trayicon,
+                Icon = Resources.trayicon,
                 Text = "タスクトレイ常駐アプリのテストです"
             };
         }
@@ -47,7 +48,7 @@ namespace SaveMe.Window
         {
             string drives = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-            int pos = ((int)Math.Pow(2,2) - 1);//指数
+            int pos = ((int)Math.Log2(dnum));//指数
 
             string letter = drives.Substring(pos, 1) + ":";
 
@@ -79,7 +80,7 @@ namespace SaveMe.Window
                             if(result == DialogResult.Yes)
                             {
                                 string src_path = Path.Combine(dLetter);
-                                var window = new SaveMe.Window.copying(src_path, "C:\\a");
+                                var window = new SaveMe.Window.copying(src_path, "a");
                                 window.Show();
                             }
                             //FileStream fs = File.Create(path);

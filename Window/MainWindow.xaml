@@ -5,19 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SaveMe"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" Closed="Window_Closed" Loaded="Window_Loaded">
+        Title="MainWindow" Height="450" Width="800" Closed="Window_Closed" Loaded="Window_Loaded" WindowStyle="None">
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="47*"/>
-            <RowDefinition Height="384*"/>
-        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="47*"/>
-            <ColumnDefinition Width="753*"/>
+            <ColumnDefinition Width="81*"/>
+            <ColumnDefinition Width="719*"/>
         </Grid.ColumnDefinitions>
-        <TextBox x:Name="TB1" Grid.Column="1" HorizontalAlignment="Left" Margin="113,105,0,0" Grid.Row="1" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="240" />
-        <TextBox x:Name="TB2" Grid.Column="1" HorizontalAlignment="Left" Margin="113,176,0,0" Grid.Row="1" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="240" />
-        <Button x:Name="Bt1" Grid.Column="1" Content="Button" HorizontalAlignment="Left" Margin="506,176,0,0" Grid.Row="1" VerticalAlignment="Top" Click="Bt1_Click"/>
-        <Label x:Name="L1" Grid.Column="1" Content="aiueo" HorizontalAlignment="Left" Margin="507,114,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="19*"/>
+            <RowDefinition Height="206*"/>
+        </Grid.RowDefinitions>
+        <Button x:Name="Setting" Content="Setting" Margin="0,0,0,5" Grid.Row="1" BorderBrush="Black" Background="White" Click="Setting_Click" Height="44" VerticalAlignment="Bottom" HorizontalAlignment="Center" Width="71"/>
+        <Frame x:Name="contentFrame" Grid.Column="1" Content="Frame" Grid.Row="1" HorizontalAlignment="Left" Width="699" Height="392" VerticalAlignment="Center" NavigationUIVisibility="Hidden" Margin="10,0,0,0"/>
     </Grid>
 </Window>
