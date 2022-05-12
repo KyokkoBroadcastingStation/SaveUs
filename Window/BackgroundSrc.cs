@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using SaveMe.Properties;
+using System.Xml.Linq;
 
 namespace SaveMe.Window
 {
@@ -72,15 +73,24 @@ namespace SaveMe.Window
                         string dLetter = GetDriveLetter(vol.dbcv_unitmask);
 
                         //処理
-                        string path = Path.Combine(dLetter + "set.ini");
+                        string path = Path.Combine(dLetter + "\\set.ini");
                         if(File.Exists(path) == true)
                         {
                             DialogResult result = MessageBox.Show("登録されたSDカードが検出されました。バックアップしますか？", "SaveMe", MessageBoxButtons.YesNo);
                             
                             if(result == DialogResult.Yes)
                             {
+                                XElement xml = XElement.Load("Setting.xml");
+                                XElement info = (from item in xml.Elements("Setting")
+                                                 where item.Element("Name").Value == "SavePath"
+                                                 select item).FirstOrDefault();
+
+                                string xml_src = info.Element("Path").Value;
+
+                                string xml_path = Path.Combine(xml_src);
+
                                 string src_path = Path.Combine(dLetter);
-                                var window = new SaveMe.Window.copying(src_path, "a");
+                                var window = new SaveMe.Window.copying(src_path, xml_path);
                                 window.Show();
                             }
                             //FileStream fs = File.Create(path);

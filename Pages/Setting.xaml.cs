@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO;
 using System.Xml.Linq;
+using System.Windows.Forms;
 
 namespace SaveMe.Pages
 {
@@ -28,35 +29,75 @@ namespace SaveMe.Pages
             if(File.Exists("Setting.xml")==true)
             {
                 XElement xml = XElement.Load("Setting.xml");
-                IEnumerable<String> infos = from item in xml.Elements("Setting")
-                                            where item.Attribute("Name").Value == "SavePath"
-                                            select item.Element("Path").Value;
+                XElement info = (from item in xml.Elements("Setting")
+                                 where item.Element("Name").Value == "SavePath"
+                                 select item).FirstOrDefault();
 
-                TB1.Text = infos.ToString();
+                TB1.Text = info.Element("Path").Value;
             } 
         }
 
         private void B2_Click(object sender, RoutedEventArgs e)
         {
+            string path = System.IO.Path.Combine(TB1.Text);
+            if(Directory.Exists(path) != true)
+            {
+                System.Windows.MessageBox.Show("パスが入力されていないか、存在しません","エラー", MessageBoxButton.OK,MessageBoxImage.Error);
+                return;
+            }
+
             if (File.Exists("./Setting.xml") == false)
             {
 
-                XElement datas = new XElement("Setting",
+                XElement datas = new XElement("Root",
+                                 new XElement("Setting",
                                  new XElement("Name","SavePath"),
-                                 new XElement("Path", ""));
+                                 new XElement("Path", "")));
                 datas.Save("Setting.xml");
             }
             XElement xml = XElement.Load("Setting.xml");
 
             XElement info = (from item in xml.Elements("Setting")
                              where item.Element("Name").Value == "SavePath"
-                             select item).Single();
+                             select item).FirstOrDefault();
+
             info.Element("Path").Value = TB1.Text;
+            xml.Save("Setting.xml");
         }
 
         private void B3_Click(object sender, RoutedEventArgs e)
         {
+            FolderBrowserDialog fbd = new FolderBrowserDialog();
+            fbd.Description = "登録するSDカードを選択してください。";
+            if (fbd.ShowDialog() == DialogResult.OK)
+            {
+                if (Directory.Exists(fbd.SelectedPath) != true)
+                {
+                    System.Windows.MessageBox.Show("パスが入力されていないか、存在しません", "エラー", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+                else if(Directory.Exists(fbd.SelectedPath) == true)
+                {
+                    string root_pass = System.IO.Path.GetPathRoot(fbd.SelectedPath);
+                    string path = System.IO.Path.Combine(fbd.SelectedPath + "set.ini");
+                    StreamWriter sw = new StreamWriter(path);
+                    System.Windows.MessageBox.Show("登録が完了しました。", "完了");
+                }
 
+            }
+
+            
+        }
+
+        private void B1_Click(object sender, RoutedEventArgs e)
+        {
+            FolderBrowserDialog fbd = new FolderBrowserDialog();
+            fbd.Description = "フォルダを指定してください。";
+            fbd.ShowNewFolderButton = true;
+            if(fbd.ShowDialog() == DialogResult.OK)
+            {
+                TB1.Text = fbd.SelectedPath;
+            }
         }
     }
 }

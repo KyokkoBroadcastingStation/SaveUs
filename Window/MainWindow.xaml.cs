@@ -33,11 +33,6 @@ namespace SaveMe
 
             var bgs = new Window.BackgroundSrc();
             bgs.Show();
-
-            if (File.Exists("./Setting.xml") == false)
-            {
-
-            }
         }
 
         private void Window_Closed(object sender, EventArgs e)
@@ -58,5 +53,6 @@ namespace SaveMe
             Uri uri = new Uri("/Pages/Setting.xaml", UriKind.Relative);
             contentFrame.Source = uri;
         }
+
     }
 }
