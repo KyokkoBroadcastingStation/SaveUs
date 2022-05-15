@@ -63,7 +63,7 @@ namespace SaveMe.Window
             // コピー元の存在チェック
             if (!src_info.Exists)
             {
-                MessageBoxResult result = MessageBox.Show("バックアップ元として指定されたフォルダ及びファイルが見つかりません。再試行しますか？\nパス："+tb1+" → "+ tb2, "エラー", MessageBoxButton.YesNo, MessageBoxImage.Error);
+                MessageBoxResult result = MessageBox.Show("コピー元として指定されたフォルダ及びファイルが見つかりません。再試行しますか？\nパス："+tb1+" → "+ tb2, "エラー", MessageBoxButton.YesNo, MessageBoxImage.Error);
                 if (result == MessageBoxResult.Yes)
                 {
                     CP(src_str, dst_str);
@@ -180,7 +180,7 @@ namespace SaveMe.Window
 
             if (dst_info.Exists)
             {
-                MessageBoxResult result2 = MessageBox.Show("バックアップが完了しました。", "完了", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                MessageBoxResult result2 = MessageBox.Show("コピーが完了しました。", "完了", MessageBoxButton.OK, MessageBoxImage.Asterisk);
                 if (result2 == MessageBoxResult.OK)
                 {
                     Hide();
