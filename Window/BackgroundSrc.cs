@@ -9,26 +9,19 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using SaveMe.Properties;
 using System.Xml.Linq;
 
 namespace SaveMe.Window
 {
     public partial class BackgroundSrc : Form
-    {
+    {   
         public BackgroundSrc()
         {
             InitializeComponent();
         }
-
         private void BackgroundSrc_Load(object sender, EventArgs e)
         {
-            var notifyIcon = new System.Windows.Forms.NotifyIcon
-            {
-                Visible = true,
-                Icon = Resources.trayicon,
-                Text = "タスクトレイ常駐アプリのテストです"
-            };
+
         }
         private const int WM_DEVICECHANGE = 0x219;              // デバイスまたはコンピューターのハードウェア構成への変更
         private const int DBT_DEVICEARRIVAL = 0x8000;           // USBの挿入
@@ -111,6 +104,11 @@ namespace SaveMe.Window
         private void BackgroundSrc_Activated(object sender, EventArgs e)
         {
             this.Hide();
+        }
+
+        private void BackgroundSrc_FormClosing(object sender, FormClosingEventArgs e)
+        {
+
         }
     }
 }

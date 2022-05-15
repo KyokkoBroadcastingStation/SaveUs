@@ -5,12 +5,15 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:SaveMe.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="367" d:DesignWidth="800"
+      d:DesignHeight="400
+      " d:DesignWidth="675"
       Title="Page1">
 
-    <Grid>
-        <StackPanel Height="1000" HorizontalAlignment="Center">
-            <TextBlock Text="Page 1" FontSize="40"/>
+    <Grid Margin="0,0,10,0">
+        <TextBlock Text="メインメニュー" Margin="10,10,0,0" FontSize="48" FontFamily="Yu Gothic UI"/>
+        <StackPanel HorizontalAlignment="Center" Margin="0,140,0,-600">
+            <TextBlock x:Name="TB1" Text="読み込み中" FontSize="40" FontFamily="Open Sans Semibold"/>
+            <TextBlock x:Name="TB2" Text="読み込み中" FontSize="40" FontFamily="Open Sans Semibold"/>
         </StackPanel>
     </Grid>
 </Page>

@@ -31,6 +31,7 @@
             this.Name = "BackgroundSrc";
             this.Text = "BackgroundSrc";
             this.Activated += new System.EventHandler(this.BackgroundSrc_Activated);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.BackgroundSrc_FormClosing);
             this.Load += new System.EventHandler(this.BackgroundSrc_Load);
             this.ResumeLayout(false);
 

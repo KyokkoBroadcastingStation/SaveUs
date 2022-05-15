@@ -13,6 +13,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Forms;
+using MessageBox = System.Windows.MessageBox;
 
 namespace SaveMe.Window
 {
@@ -56,8 +58,8 @@ namespace SaveMe.Window
             DirectoryInfo src_info = new DirectoryInfo(src_str);
             DirectoryInfo dst_info = new DirectoryInfo(dst_str);
 
-            string[] extensions = { ".mp3", ".wma", ".mp4", ".MP4", ".wav" };
-
+            string[] extensions = { ".mp3",".MP3",".wma",".WMA",".mp4",".MP4",".wav",".WAV",".txt",".TXT",".avi",".AVI",".mts",".MTS" };
+            int suc = 0;
             // コピー元の存在チェック
             if (!src_info.Exists)
             {
@@ -86,13 +88,24 @@ namespace SaveMe.Window
 
             // コピー先のフォルダ作成
             Directory.CreateDirectory(dst_str);
-
+            string gr_name = null;
+            genre gr = new genre(dst_str);
+            System.Windows.Forms.DialogResult dr = gr.ShowDialog();
+            if (dr == System.Windows.Forms.DialogResult.OK)
+            {
+                gr_name = gr._genre;
+            }
+            else if (dr == System.Windows.Forms.DialogResult.Cancel)
+            {
+                MessageBox.Show("キャンセルされました。処理を中断します。","SaveUs");
+                return;
+            }
             // コピー元のファイルを全てコピー先のフォルダに上書きコピー
             foreach (string file in Directory.EnumerateFiles(src_str, "*.*", SearchOption.AllDirectories).Where(s => extensions.Any(ext => ext == System.IO.Path.GetExtension(s))))
             {
                 //コピー先サブフォルダのパス取得+フォルダ作成(保存先パス\(ファイル作成年)\(ファイル作成月)\(ファイル作成日))
                 DateTime dt = File.GetLastWriteTime(file);
-                string subfolder = System.IO.Path.Combine(dst_str, dt.ToString("yyyy"), dt.ToString("MM"), dt.ToString("dd"));
+                string subfolder = System.IO.Path.Combine(dst_str, gr_name ,dt.ToString("yyyy"), dt.ToString("MM"), dt.ToString("dd"));
                 Directory.CreateDirectory(subfolder);
 
                 //コピー先パス生成((サブフォルダパス)\(コピーするファイル名))
@@ -119,11 +132,51 @@ namespace SaveMe.Window
                     }
             }
 
-            //コピー後の成功
-            /*    foreach()
+            //コピー後の成功判定、削除
+            foreach (string file in Directory.EnumerateFiles(src_str, "*.*", SearchOption.AllDirectories).Where(s => extensions.Any(ext => ext == System.IO.Path.GetExtension(s))))
+            {
+                DateTime dt = File.GetLastWriteTime(file);
+                string subfolder = System.IO.Path.Combine(dst_str, dt.ToString("yyyy"), dt.ToString("MM"), dt.ToString("dd"));
+                Directory.CreateDirectory(subfolder);
+
+                //コピー先パス生成((サブフォルダパス)\(コピーするファイル名))
+                FileInfo src_file = new FileInfo(file);
+                string dst_path = System.IO.Path.Combine(subfolder, src_file.Name);
+
+                FileInfo fileinfo = new FileInfo(file);
+                FileInfo dst_fileinfo = new FileInfo(dst_path);
+
+                if(fileinfo.Name == dst_fileinfo.Name)
+                {
+                    //成功回数
+                    suc++;
+                }
+                else if(fileinfo.Name == dst_fileinfo.Name)
+                {
+                    System.Windows.MessageBox.Show("コピーが失敗したかキャンセルされました。");
+                    return;
+                }
+                
+            }
+            MessageBoxResult result3 = MessageBox.Show(suc + "個のファイルのコピーに成功しました。コピー元のファイルを削除しますか？","SaveUs",MessageBoxButton.YesNo);
+            if (result3 == MessageBoxResult.Yes)
+            {
+                foreach (string file in Directory.EnumerateFiles(src_str, "*.*", SearchOption.AllDirectories).Where(s => extensions.Any(ext => ext == System.IO.Path.GetExtension(s))))
                 {
 
-                }*/
+                    DateTime dt = File.GetLastWriteTime(file);
+                    string subfolder = System.IO.Path.Combine(dst_str, dt.ToString("yyyy"), dt.ToString("MM"), dt.ToString("dd"));
+                    Directory.CreateDirectory(subfolder);
+
+                    //コピー先パス生成((サブフォルダパス)\(コピーするファイル名))
+                    FileInfo src_file = new FileInfo(file);
+                    string dst_path = System.IO.Path.Combine(subfolder, src_file.Name);
+
+                    FileInfo fileinfo = new FileInfo(file);
+                    FileInfo dst_fileinfo = new FileInfo(dst_path);
+                    fileinfo.Delete();
+                }
+            }
 
             if (dst_info.Exists)
             {

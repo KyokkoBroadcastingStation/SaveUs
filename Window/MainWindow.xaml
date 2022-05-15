@@ -1,21 +1,31 @@
-﻿<Window x:Class="SaveMe.MainWindow"
+﻿<Window x:Name="SaveUs" x:Class="SaveMe.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SaveMe"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" Closed="Window_Closed" Loaded="Window_Loaded" WindowStyle="None">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="81*"/>
-            <ColumnDefinition Width="719*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="19*"/>
-            <RowDefinition Height="206*"/>
-        </Grid.RowDefinitions>
-        <Button x:Name="Setting" Content="Setting" Margin="0,0,0,5" Grid.Row="1" BorderBrush="Black" Background="White" Click="Setting_Click" Height="44" VerticalAlignment="Bottom" HorizontalAlignment="Center" Width="71"/>
-        <Frame x:Name="contentFrame" Grid.Column="1" Content="Frame" Grid.Row="1" HorizontalAlignment="Left" Width="699" Height="392" VerticalAlignment="Center" NavigationUIVisibility="Hidden" Margin="10,0,0,0"/>
-    </Grid>
+        Title="SaveUs" Height="450" Width="800" Closed="Window_Closed" Loaded="Window_Loaded" WindowStyle="None" Background="#FF8C8C8C" ResizeMode="NoResize" Closing="Window_Closing">
+    <DockPanel>
+        <Grid x:Name="TitleBar" DockPanel.Dock="Top" Height="45" Background="#FF404040">
+            <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="SaveUs" Foreground="White" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16" Margin="25,0,0,0" Height="24" Width="212" FontFamily="Open Sans"/>
+            <Button x:Name="B2" Content="×" Margin="755,0,0,0" RenderTransformOrigin="0.061,0.09" BorderBrush="{x:Null}" Background="{x:Null}" FontFamily="Open Sans" FontSize="30" FontStretch="Expanded" Foreground="#FFF2F2F2" Click="B2_Click"/>
+            <Button x:Name="B3" Content="-" Margin="710,0,45,0" RenderTransformOrigin="0.061,0.09" BorderBrush="{x:Null}" Background="{x:Null}" FontFamily="Open Sans Semibold" FontSize="33" FontStretch="Normal" Foreground="#FFF2F2F2" Click="B3_Click" FontWeight="Regular" FontStyle="Normal"/>
+        </Grid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="81*"/>
+                <ColumnDefinition Width="719*"/>
+            </Grid.ColumnDefinitions>
+            <Border BorderThickness="1" Background="#FFF2F2F2" HorizontalAlignment="Center" Width="83" Margin="0,-1,0,-1" Grid.RowSpan="3">
+                <StackPanel>
+                    <Button x:Name="Home" Content="メインメニュー" BorderBrush="{x:Null}" Background="#FFF2F2F2" Click="Home_Click" Height="41" Width="81" Foreground="#FF404040" FontFamily="Open Sans Semibold" FontWeight="Bold"/>
+                    <Button x:Name="Setting" Margin="0,324,0,0" Content="設定" BorderBrush="{x:Null}" Background="#FFF2F2F2" Click="Setting_Click" Height="40" Width="81" Foreground="#FF404040" FontFamily="Open Sans Semibold" FontWeight="Bold"/>
+                </StackPanel>
+            </Border>
+            <Frame x:Name="contentFrame" Grid.Column="1" Content="Frame" HorizontalAlignment="Center" Width="699" Height="392" VerticalAlignment="Center" NavigationUIVisibility="Hidden" Grid.Row="1"/>
+
+        </Grid>
+    </DockPanel>
+
 </Window>

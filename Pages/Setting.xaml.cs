@@ -32,7 +32,6 @@ namespace SaveMe.Pages
                 XElement info = (from item in xml.Elements("Setting")
                                  where item.Element("Name").Value == "SavePath"
                                  select item).FirstOrDefault();
-
                 TB1.Text = info.Element("Path").Value;
             } 
         }
@@ -63,6 +62,7 @@ namespace SaveMe.Pages
 
             info.Element("Path").Value = TB1.Text;
             xml.Save("Setting.xml");
+            System.Windows.MessageBox.Show("設定の保存が完了しました。");
         }
 
         private void B3_Click(object sender, RoutedEventArgs e)
@@ -85,8 +85,6 @@ namespace SaveMe.Pages
                 }
 
             }
-
-            
         }
 
         private void B1_Click(object sender, RoutedEventArgs e)
