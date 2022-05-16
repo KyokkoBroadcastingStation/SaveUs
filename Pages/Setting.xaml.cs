@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using System.IO;
 using System.Xml.Linq;
 using System.Windows.Forms;
+using MessageBox = System.Windows.Forms.MessageBox;
 
 namespace SaveMe.Pages
 {
@@ -105,6 +106,17 @@ namespace SaveMe.Pages
             {
                 TB1.Text = fbd.SelectedPath;
             }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {  
+            //Runキーを開く
+            Microsoft.Win32.RegistryKey regkey =Microsoft.Win32.Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Run", true);
+            //値の名前に製品名、値のデータに実行ファイルのパスを指定し、書き込む
+            regkey.SetValue(System.Windows.Forms.Application.ProductName, System.Windows.Forms.Application.ExecutablePath);
+            //閉じる
+            regkey.Close();
+            MessageBox.Show("スタートアップに登録されました。");
         }
     }
 }
