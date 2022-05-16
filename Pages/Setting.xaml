@@ -18,7 +18,7 @@
             <RowDefinition Height="35*"/>
             <RowDefinition Height="217*"/>
         </Grid.RowDefinitions>
-        <Label Content="設定" HorizontalAlignment="Left" VerticalAlignment="Center" Height="70" Width="269" FontSize="48" Foreground="#FF0D0D0D" FontFamily="Yu Gothic UI"/>
+        <Label Content="設定" HorizontalAlignment="Left" VerticalAlignment="Center" Height="70" Width="269" FontSize="48" Foreground="#FF242424" FontFamily="Yu Gothic UI"/>
         <TextBox x:Name="TB1" HorizontalAlignment="Left" Margin="195,0,0,0" Grid.Row="1" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="382" Height="22"/>
         <Label x:Name="L1" Content="バックアップ先パス" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="1" Width="180" Height="26" VerticalAlignment="Center"/>
         <Button x:Name="B1" Content="参照" HorizontalAlignment="Left" Margin="597,0,0,0" Grid.Row="1" VerticalAlignment="Center" Height="20" Width="47" Click="B1_Click"/>

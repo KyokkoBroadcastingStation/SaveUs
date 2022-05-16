@@ -80,8 +80,16 @@ namespace SaveMe.Pages
                 {
                     string root_pass = System.IO.Path.GetPathRoot(fbd.SelectedPath);
                     string path = System.IO.Path.Combine(fbd.SelectedPath + "set.ini");
-                    StreamWriter sw = new StreamWriter(path);
-                    System.Windows.MessageBox.Show("登録が完了しました。", "完了");
+                    if(File.Exists(path)!=true)
+                    {
+                        StreamWriter sw = new StreamWriter(path);
+                        System.Windows.MessageBox.Show("登録が完了しました。", "完了");
+                    }
+                    else if (File.Exists(path)==true)
+                    {
+                        System.Windows.MessageBox.Show("このSDカードは既に登録されています。", "エラー", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                    
                 }
 
             }
