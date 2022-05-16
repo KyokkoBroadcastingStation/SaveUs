@@ -58,7 +58,7 @@ namespace SaveMe.Window
             DirectoryInfo src_info = new DirectoryInfo(src_str);
             DirectoryInfo dst_info = new DirectoryInfo(dst_str);
 
-            string[] extensions = { ".mp3",".MP3",".wma",".WMA",".mp4",".MP4",".wav",".WAV",".txt",".TXT",".avi",".AVI",".mts",".MTS" };
+            string[] extensions = { ".mp3",".MP3",".wma",".WMA",".mp4",".MP4",".wav",".WAV",".txt",".TXT",".mov",".MOV",".mkv",".MKV",".avi",".AVI",".mts",".MTS",".png",".PNG","jpg","JPG", };
             int suc = 0;
             // コピー元の存在チェック
             if (!src_info.Exists)

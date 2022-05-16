@@ -12,8 +12,8 @@
     <Grid Margin="0,0,10,0">
         <TextBlock Text="メインメニュー" Margin="10,10,0,0" FontSize="48" FontFamily="Yu Gothic UI" Foreground="#FF242424"/>
         <StackPanel HorizontalAlignment="Center" Margin="0,140,0,-600">
-            <TextBlock x:Name="TB1" Text="読み込み中" FontSize="40" FontFamily="M+ 1c heavy" FontWeight="Bold" Foreground="#FF242424"/>
-            <TextBlock x:Name="TB2" Text="読み込み中" FontSize="40" FontFamily="M+ 1c heavy" Foreground="#FF242424"/>
+            <TextBlock x:Name="TB1" Text="読み込み中" FontSize="40" FontFamily="M+ 1c medium" FontWeight="Bold" Foreground="#FF242424"/>
+            <TextBlock x:Name="TB2" Text="読み込み中" FontSize="40" FontFamily="M+ 1c medium" Foreground="#FF242424"/>
         </StackPanel>
     </Grid>
 </Page>

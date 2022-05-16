@@ -5,9 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SaveMe"
         mc:Ignorable="d"
-        Title="SaveUs" Height="450" Width="800" Closed="Window_Closed" Loaded="Window_Loaded" WindowStyle="None" Background="#FF8C8C8C" ResizeMode="NoResize" Closing="Window_Closing">
+        Title="SaveUs" Height="450" Width="800" Closed="Window_Closed" Loaded="Window_Loaded" WindowStyle="None" ResizeMode="NoResize" Closing="Window_Closing">
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#FFEFEDED" Offset="1"/>
+            <GradientStop Color="White"/>
+        </LinearGradientBrush>
+    </Window.Background>
     <DockPanel>
-        <Grid x:Name="TitleBar" DockPanel.Dock="Top" Height="45" Background="#FF404040">
+        <Grid x:Name="TitleBar" DockPanel.Dock="Top" Height="45" Panel.ZIndex="22">
+            <Grid.Background>
+                <LinearGradientBrush EndPoint="1,1" StartPoint="0,16">
+                    <GradientStop Color="#FF3B8871" Offset="0"/>
+                    <GradientStop Color="#FF74CCB1" Offset="1"/>
+                </LinearGradientBrush>
+            </Grid.Background>
             <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="SaveUs" Foreground="White" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16" Margin="25,0,0,0" Height="24" Width="212" FontFamily="Open Sans"/>
             <Button x:Name="B2" Content="×" Margin="755,0,0,0" RenderTransformOrigin="0.061,0.09" BorderBrush="{x:Null}" Background="{x:Null}" FontFamily="Open Sans" FontSize="30" FontStretch="Expanded" Foreground="#FFF2F2F2" Click="B2_Click"/>
             <Button x:Name="B3" Content="-" Margin="710,0,45,0" RenderTransformOrigin="0.061,0.09" BorderBrush="{x:Null}" Background="{x:Null}" FontFamily="Open Sans Semibold" FontSize="33" FontStretch="Normal" Foreground="#FFF2F2F2" Click="B3_Click" FontWeight="Regular" FontStyle="Normal"/>
@@ -17,10 +29,10 @@
                 <ColumnDefinition Width="81*"/>
                 <ColumnDefinition Width="719*"/>
             </Grid.ColumnDefinitions>
-            <Border BorderThickness="1" Background="#FFF2F2F2" HorizontalAlignment="Center" Width="83" Margin="0,-1,0,-1" Grid.RowSpan="3">
+            <Border BorderThickness="1" HorizontalAlignment="Center" Width="83" Margin="0,-1,0,-1" Grid.RowSpan="3" Background="WhiteSmoke">
                 <StackPanel>
-                    <Button x:Name="Home" Content="メインメニュー" BorderBrush="{x:Null}" Background="#FFF2F2F2" Click="Home_Click" Height="41" Width="81" Foreground="#FF404040" FontFamily="Open Sans Semibold" FontWeight="Bold"/>
-                    <Button x:Name="Setting" Margin="0,324,0,0" Content="設定" BorderBrush="{x:Null}" Background="#FFF2F2F2" Click="Setting_Click" Height="40" Width="81" Foreground="#FF404040" FontFamily="Open Sans Semibold" FontWeight="Bold"/>
+                    <Button x:Name="Home" Content="メインメニュー" BorderBrush="{x:Null}" Background="{x:Null}" Click="Home_Click" Height="41" Width="81" Foreground="#FF404040" FontFamily="Open Sans Semibold" FontWeight="Bold"/>
+                    <Button x:Name="Setting" Margin="0,324,0,0" Content="設定" BorderBrush="{x:Null}" Background="{x:Null}" Click="Setting_Click" Height="40" Width="81" Foreground="#FF404040" FontFamily="Open Sans Semibold" FontWeight="Bold"/>
                 </StackPanel>
             </Border>
             <Frame x:Name="contentFrame" Grid.Column="1" Content="Frame" HorizontalAlignment="Center" Width="699" Height="392" VerticalAlignment="Center" NavigationUIVisibility="Hidden" Grid.Row="1"/>
