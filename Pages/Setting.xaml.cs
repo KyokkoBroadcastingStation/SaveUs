@@ -88,6 +88,7 @@ namespace SaveMe.Pages
                     else if (File.Exists(path)==true)
                     {
                         System.Windows.MessageBox.Show("このSDカードは既に登録されています。", "エラー", MessageBoxButton.OK, MessageBoxImage.Error);
+                        return;
                     }
                     
                 }
