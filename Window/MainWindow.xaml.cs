@@ -17,7 +17,7 @@ using System.Windows.Shapes;
 using SaveMe.Properties;
 using System.Windows.Forms;
 using System.IO;
-
+using System.Xml.Linq;
 
 namespace SaveMe
 {
@@ -112,7 +112,32 @@ namespace SaveMe
 
         private void B2_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            XElement xml = XElement.Load("Setting.xml");
+            XElement info = (from item in xml.Elements("Setting")
+                             where item.Element("Name").Value == "SavePath"
+                             select item).FirstOrDefault();
+
+            string exit_op = info.Element("Exit").Value;
+            if(exit_op == "true")
+            {
+                switch (pattern)
+                {
+                    case 0:
+                        this.ShowInTaskbar = false;
+                        this.WindowState = System.Windows.WindowState.Minimized;
+                        pattern = 1;
+                        break;
+                    case 1:
+                        this.ShowInTaskbar = true;
+                        this.WindowState = System.Windows.WindowState.Normal;
+                        pattern = 0;
+                        break;
+                }
+            }
+            else if(exit_op == "false")
+            {
+                this.Close();
+            }
         }
 
         private void B3_Click(object sender, RoutedEventArgs e)

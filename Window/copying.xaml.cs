@@ -72,6 +72,7 @@ namespace SaveMe.Window
                 {
                     this.Hide();
                 }
+                
                 return;
             }
 

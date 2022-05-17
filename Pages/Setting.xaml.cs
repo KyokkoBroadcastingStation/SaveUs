@@ -34,6 +34,17 @@ namespace SaveMe.Pages
                                  where item.Element("Name").Value == "SavePath"
                                  select item).FirstOrDefault();
                 TB1.Text = info.Element("Path").Value;
+                switch (info.Element("Exit").Value)
+                {
+                    case "True":
+                        CB1.IsChecked = true;
+
+                        break;
+
+                    case "False":
+                        CB1.IsChecked = false;
+                        break;
+                }
             } 
         }
 
@@ -52,7 +63,8 @@ namespace SaveMe.Pages
                 XElement datas = new XElement("Root",
                                  new XElement("Setting",
                                  new XElement("Name","SavePath"),
-                                 new XElement("Path", "")));
+                                 new XElement("Path", ""),
+                                 new XElement("Exit", "")));
                 datas.Save("Setting.xml");
             }
             XElement xml = XElement.Load("Setting.xml");
@@ -62,6 +74,8 @@ namespace SaveMe.Pages
                              select item).FirstOrDefault();
 
             info.Element("Path").Value = TB1.Text;
+            info.Element("Exit").Value = CB1.IsChecked.ToString();
+
             xml.Save("Setting.xml");
             System.Windows.MessageBox.Show("設定の保存が完了しました。");
         }

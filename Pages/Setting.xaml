@@ -25,6 +25,7 @@
         <Button x:Name="B2" Content="保存" HorizontalAlignment="Center" Margin="0,163,0,0" Grid.Row="5" VerticalAlignment="Top" Width="655" Click="B2_Click"/>
         <Button x:Name="B3" Content="自動的にバックアップするSDカードを登録する" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Center" Width="655" Click="B3_Click"/>
         <Button Content="OSの起動と同時に起動する" HorizontalAlignment="Center" Grid.Row="3" VerticalAlignment="Center" Height="24" Width="655" Click="Button_Click"/>
+        <CheckBox x:Name="CB1" Content="終了する代わりにバッググラウンドに常駐する" HorizontalAlignment="Left" Margin="34,0,0,0" Grid.Row="4" VerticalAlignment="Center" Width="324" IsChecked="True"/>
 
     </Grid>
 </Page>
