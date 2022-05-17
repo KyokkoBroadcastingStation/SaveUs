@@ -118,7 +118,7 @@ namespace SaveMe
                              select item).FirstOrDefault();
 
             string exit_op = info.Element("Exit").Value;
-            if(exit_op == "true")
+            if(exit_op == "True")
             {
                 switch (pattern)
                 {
@@ -134,7 +134,11 @@ namespace SaveMe
                         break;
                 }
             }
-            else if(exit_op == "false")
+            else if(exit_op == "False")
+            {
+                this.Close();
+            }
+            else
             {
                 this.Close();
             }

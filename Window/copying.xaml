@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SaveMe.Window"
         mc:Ignorable="d"
-        Title="copying" Height="200" Width="530" Loaded="Window_Loaded" Closing="Window_Closing">
+        Title="copying" Height="200" Width="530" Loaded="Window_Loaded" Closing="Window_Closing" WindowStartupLocation="CenterScreen">
     <Grid Margin="0,0,0,0" Background="#FFF2F2F2">
         <ProgressBar x:Name="PB2" HorizontalAlignment="Center" Height="20" Margin="0,93,0,0" VerticalAlignment="Top" Width="400"/>
         <Label x:Name="L1" Content="L1" HorizontalAlignment="Left" Margin="65,67,0,0" VerticalAlignment="Top" Width="302"/>

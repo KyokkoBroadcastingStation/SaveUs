@@ -64,7 +64,7 @@ namespace SaveMe.Pages
                                  new XElement("Setting",
                                  new XElement("Name","SavePath"),
                                  new XElement("Path", ""),
-                                 new XElement("Exit", "")));
+                                 new XElement("Exit", "True")));
                 datas.Save("Setting.xml");
             }
             XElement xml = XElement.Load("Setting.xml");

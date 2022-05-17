@@ -138,7 +138,6 @@ namespace SaveMe.Window
             {
                 DateTime dt = File.GetLastWriteTime(file);
                 string subfolder = System.IO.Path.Combine(dst_str, dt.ToString("yyyy"), dt.ToString("MM"), dt.ToString("dd"));
-                Directory.CreateDirectory(subfolder);
 
                 //コピー先パス生成((サブフォルダパス)\(コピーするファイル名))
                 FileInfo src_file = new FileInfo(file);
@@ -167,7 +166,6 @@ namespace SaveMe.Window
 
                     DateTime dt = File.GetLastWriteTime(file);
                     string subfolder = System.IO.Path.Combine(dst_str, dt.ToString("yyyy"), dt.ToString("MM"), dt.ToString("dd"));
-                    Directory.CreateDirectory(subfolder);
 
                     //コピー先パス生成((サブフォルダパス)\(コピーするファイル名))
                     FileInfo src_file = new FileInfo(file);
