@@ -128,7 +128,7 @@ namespace SaveMe.Window
 
                 if (close == true)
                     {
-                        Close();
+                        this.Hide();
                         return;
                     }
             }

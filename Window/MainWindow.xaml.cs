@@ -35,12 +35,12 @@ namespace SaveMe
         };
         ContextMenuStrip contextMenuStrip = new ContextMenuStrip();
         ToolStripMenuItem toolStripMenuItem = new ToolStripMenuItem();
-
+        Window.BackgroundSrc bgs = new Window.BackgroundSrc();
         int pattern;
         public MainWindow()
         {
             InitializeComponent();
-            var bgs = new Window.BackgroundSrc();
+            
             bgs.Show();
             // NotifyIconのクリックイベント
             notifyIcon.MouseDoubleClick += NotifyIcon_Click;
@@ -133,10 +133,6 @@ namespace SaveMe
                         pattern = 0;
                         break;
                 }
-            }
-            else if(exit_op == "False")
-            {
-                this.Close();
             }
             else
             {
